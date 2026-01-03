@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ropon Pov - Computer Science Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f1419;
+            --secondary: #1a202c;
+            --accent: #00d9ff;
+            --text-primary: #e2e8f0;
+            --text-secondary: #a0aec0;
+            --border: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1f2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .title {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--accent);
+            background: transparent;
+            color: var(--accent);
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-secondary {
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-secondary);
+            color: var(--primary);
+        }
+
+        .hero-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-block {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--accent);
+            line-height: 1.8;
+            text-align: left;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .code-line {
+            display: block;
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 6rem 2rem;
+            background: var(--secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: var(--primary);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.1);
+        }
+
+        .skill-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-list li {
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tags span {
+            background: rgba(0, 217, 255, 0.15);
+            color: var(--accent);
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .project-link:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 6rem 1rem 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">ROPON POV</a>
+        <ul class="nav-links">
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="title">Computer Scientist & Developer</div>
+            <h1>Crafting elegant solutions to complex problems</h1>
+            <p>Building high-performance applications with cutting-edge technologies. Specialized in algorithms, data structures, and full-stack development.</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <pre class="code-block" id="codeBlock"></pre>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid" id="skillsContainer"></div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid" id="projectsContainer"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding: 6rem 2rem; text-align: center; border-top: 1px solid var(--border);">
+        <h2 class="section-title">Let's Build Something Great</h2>
+        <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem;">
+            I'm always interested in hearing about new projects and opportunities. Let's connect!
+        </p>
+        <div class="cta-buttons" style="justify-content: center;">
+            <a href="mailto:hello@roponpov.com" class="btn">Send an Email</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Twitter</a>
+            <a href="#">Email</a>
+        </div>
+        <p>&copy; 2026 Ropon Pov. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Randomized CS data
+        const csTopics = [
+            { name: 'Data Structures', skills: ['Arrays', 'Linked Lists', 'Trees', 'Graphs', 'Hash Tables', 'Heaps'] },
+            { name: 'Algorithms', skills: ['Sorting', 'Searching', 'Dynamic Programming', 'Greedy', 'Recursion', 'BFS/DFS'] },
+            { name: 'Languages', skills: ['Python', 'JavaScript', 'Java', 'C++', 'TypeScript', 'Go'] },
+            { name: 'Web Development', skills: ['React', 'Node.js', 'REST APIs', 'GraphQL', 'SQL', 'MongoDB'] },
+            { name: 'System Design', skills: ['Scalability', 'Caching', 'Load Balancing', 'Microservices', 'Docker', 'Kubernetes'] },
+            { name: 'AI/ML Basics', skills: ['Machine Learning', 'Neural Networks', 'NLP', 'Computer Vision', 'TensorFlow', 'PyTorch'] }
+        ];
+
+        const csProjects = [
+            {
+                name: 'Neural Network Classifier',
+                description: 'Built a deep learning model for image classification using CNN architecture. Achieved 97% accuracy on MNIST dataset with optimized backpropagation algorithms.',
+                tags: ['Python', 'TensorFlow', 'Deep Learning', 'OpenCV']
+            },
+            {
+                name: 'Distributed Hash Table',
+                description: 'Implemented a peer-to-peer distributed hash table using consistent hashing. Supports O(log n) lookup with fault tolerance and automatic rebalancing.',
+                tags: ['C++', 'P2P', 'Networking', 'Algorithms']
+            },
+            {
+                name: 'Real-time Graph Database',
+                description: 'Designed and implemented a graph database with real-time query processing using BFS and DFS traversals. Supports 1M+ node networks.',
+                tags: ['Go', 'GraphQL', 'Database', 'Performance']
+            },
+            {
+                name: 'Compiler Frontend',
+                description: 'Created a lexer and parser for a custom programming language with AST generation. Implements error recovery and syntax highlighting.',
+                tags: ['Python', 'Parsing', 'Compilers', 'Formal Languages']
+            },
+            {
+                name: 'Encryption Protocol',
+                description: 'Developed a secure end-to-end encryption protocol using asymmetric cryptography and digital signatures for peer-to-peer messaging.',
+                tags: ['Python', 'Cryptography', 'Security', 'Protocols']
+            },
+            {
+                name: 'Algorithm Visualizer',
+                description: 'Web-based tool for visualizing sorting and searching algorithms with step-by-step execution. Interactive and educational.',
+                tags: ['JavaScript', 'React', 'Web', 'Visualization']
+            }
+        ];
+
+        const codeExamples = [
+            `function quickSort(arr, low, high) {\n  if (low < high) {\n    let pi = partition(arr, low, high);\n    quickSort(arr, low, pi - 1);\n    quickSort(arr, pi + 1, high);\n  }\n  return arr;\n}`,
+            `def dijkstra(graph, start):\n  distances = {node: float('inf') for node in graph}\n  distances[start] = 0\n  pq = [(0, start)]\n  while pq:\n    current_dist, node = heappop(pq)\n    # Process node\n  return distances`,
+            `class BinarySearchTree {\n  constructor(value) {\n    this.value = value;\n    this.left = null;\n    this.right = null;\n  }\n  insert(value) {\n    if (value < this.value) this.left = new BST(value);\n    else this.right = new BST(value);\n  }\n}`,
+            `async function fetchWithRetry(url, maxRetries = 3) {\n  for (let i = 0; i < maxRetries; i++) {\n    try {\n      return await fetch(url);\n    } catch (error) {\n      if (i === maxRetries - 1) throw error;\n    }\n  }\n}`,
+            `def dp_coin_change(coins, amount):\n  dp = [float('inf')] * (amount + 1)\n  dp[0] = 0\n  for coin in coins:\n    for i in range(coin, amount + 1):\n      dp[i] = min(dp[i], dp[i - coin] + 1)\n  return dp[amount]`
+        ];
+
+        // Render Skills
+        function renderSkills() {
+            const container = document.getElementById('skillsContainer');
+            csTopics.forEach(topic => {
+                const card = document.createElement('div');
+                card.className = 'skill-card';
+                card.innerHTML = `
+                    <h3>${topic.name}</h3>
+                    <ul class="skill-list">
+                        ${topic.skills.map(skill => `<li>${skill}</li>`).join('')}
+                    </ul>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Render Projects
+        function renderProjects() {
+            const container = document.getElementById('projectsContainer');
+            csProjects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.innerHTML = `
+                    <div class="project-header">
+                        <div>
+                            <h3>${project.name}</h3>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-desc">${project.description}</p>
+                        <div class="project-tags">
+                            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+                        </div>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Animate code block with random example
+        function animateCodeBlock() {
+            const codeBlock = document.getElementById('codeBlock');
+            const randomCode = codeExamples[Math.floor(Math.random() * codeExamples.length)];
+            const lines = randomCode.split('\n');
+            
+            codeBlock.innerHTML = '';
+            lines.forEach((line, index) => {
+                const span = document.createElement('span');
+                span.className = 'code-line';
+                span.textContent = line;
+                span.style.animationDelay = `${index * 0.1}s`;
+                codeBlock.appendChild(span);
+            });
+
+            // Change code every 8 seconds
+            setInterval(() => {
+                const newCode = codeExamples[Math.floor(Math.random() * codeExamples.length)];
+                const newLines = newCode.split('\n');
+                
+                codeBlock.innerHTML = '';
+                newLines.forEach((line, index) => {
+                    const span = document.createElement('span');
+                    span.className = 'code-line';
+                    span.textContent = line;
+                    span.style.animationDelay = `${index * 0.1}s`;
+                    codeBlock.appendChild(span);
+                });
+            }, 8000);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize
+        renderSkills();
+        renderProjects();
+        animateCodeBlock();
+    </script>
+</body>
+</html>
